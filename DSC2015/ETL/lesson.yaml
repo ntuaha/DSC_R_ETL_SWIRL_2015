@@ -1,0 +1,218 @@
+- Class: meta
+  Course: DSC2015
+  Lesson: ETL
+  Author: aha
+  Type: Standard
+  Organization: DSC 2015
+  Version: 1.0
+
+- Class: text
+  Output: 開始來學習用R做ETL吧！, 不知道指令的地方請輸入一次嘗試，錯誤就會有hint囉
+
+- Class: text
+  Output: 先來把必要的Library導入
+
+- Class: cmd_question
+  Output: 第一步 執行 Cl_info = read.table(file="./DSC2015/ETL/cl_info_other.csv",sep=",",stringsAsFactors=F,header=T)
+  CorrectAnswer: Cl_info = read.table(file="./DSC2015/ETL/cl_info_other.csv",sep=",",stringsAsFactors=F,header=T)
+  AnswerTests: omnitest(correctExpr='Cl_info = read.table(file="./DSC2015/ETL/cl_info_other.csv",sep=",",stringsAsFactors=F,header=T)')
+
+- Class: cmd_question
+  Output: 來看一下資料內容 - View
+  CorrectAnswer: View(Cl_info)
+  AnswerTests: omnitest(correctExpr='View(Cl_info)')
+  Hint: 輸入View(Cl_info)
+
+- Class: text
+  Output: 看起來一切都很正常
+  
+- Class: cmd_question
+  Output: 看一下這個資料的結構 - str
+  CorrectAnswer: str(Cl_info)
+  AnswerTests: omnitest(correctExpr='str(Cl_info)')
+  Hint: 輸入str(Cl_info)
+  
+- Class: text
+  Output: 怎麼會這樣，我想要的data_dt 不是日期格式，那我該怎麼辦
+  
+- Class: cmd_question
+  Output: 讓我們開始解決這個問題，導入今日課程最重要的一個套件dplyr, 請輸入 library(dplyr)
+  CorrectAnswer: library(dplyr)
+  AnswerTests: omnitest(correctExpr='library(dplyr)')
+   
+- Class: cmd_question
+  Output: 透過dplyr, 輸入Cl_info_part = mutate(Cl_info,data_dt = as.POSIXct(data_dt),bank_code = as.factor(bank_code),etl_dt = as.POSIXct(etl_dt)) 來轉換資料型態
+  CorrectAnswer: Cl_info_part = mutate(Cl_info,data_dt = as.POSIXct(data_dt),bank_code = as.factor(bank_code),etl_dt = as.POSIXct(etl_dt))
+  AnswerTests: omnitest(correctExpr='Cl_info_part = mutate(Cl_info,data_dt = as.POSIXct(data_dt),bank_code = as.factor(bank_code),etl_dt = as.POSIXct(etl_dt))')
+
+- Class: cmd_question
+  Output: 看一下這Cl_info_part的結構 - str
+  CorrectAnswer: str(Cl_info_part)
+  AnswerTests: omnitest(correctExpr='str(Cl_info_part)')
+  Hint: 輸入str(Cl_info_part)
+
+- Class: text
+  Output: 是不是data_dt,elt_dt 已經是POSIXct 時間格式  與  bank_code 是Factor格式了!
+
+- Class: text
+  Output: 到這裡你已經完成最基本的ETL操作了，這樣的資料已經可以用來分析，但其實對於處理房價的問題還不夠，所以繼續往後走吧！
+
+- Class: text
+  Output: 接下來來練習dplyr 幾個基本操作
+  
+- Class: cmd_question
+  Output: 透過dplyr裡的select，可以選出需要的欄位．請幫忙從Cl_info_part找出data_dt,bank_nm,mortgage_bal,叫這個資料集Cl_demo1
+  CorrectAnswer: Cl_demo1 = select(Cl_info_part,data_dt,bank_nm,mortgage_bal)
+  AnswerTests: omnitest(correctExpr='Cl_demo1 = select(Cl_info_part,data_dt,bank_nm,mortgage_bal)')
+  Hint: 輸入Cl_demo1 = select(Cl_info_part,data_dt,bank_nm,mortgage_bal)
+
+- Class: cmd_question
+  Output: 透過dplyr裡的filter，可以選出需要的紀錄．請幫忙從Cl_info_part挑選出mortgage＿bal大於1千萬的銀行資料,叫這個資料集Cl_demo2
+  CorrectAnswer: Cl_demo2 = filter(Cl_info_part,mortgage_bal>1000000)
+  AnswerTests: omnitest(correctExpr='Cl_demo2 = filter(Cl_info_part,mortgage_bal>1000000)')
+  Hint: 輸入Cl_demo2 = filter(Cl_info_part,mortgage_bal>1000000)
+
+- Class: cmd_question
+  Output: 透過dplyr裡的mutate，可以新增，更新需要的欄位．請幫忙在Cl_info_part做一個欄位MM,其值等於mortagage_bal除以1千萬,叫這個資料集Cl_demo3
+  CorrectAnswer: Cl_demo3 = mutate(Cl_info_part,MM = mortgage_bal/1000000)
+  AnswerTests: omnitest(correctExpr='Cl_demo3 = mutate(Cl_info_part,MM = mortgage_bal/1000000)')
+  Hint: 輸入Cl_demo3 = mutate(Cl_info_part,MM = mortgage_bal/1000000)
+  
+- Class: cmd_question
+  Output: 透過dplyr裡的arrange，可以排序需要的欄位，請幫忙排序Cl_info_part出mortgage＿bal由小到大，但資料時間data_dt從大到小,叫這個資料集Cl_demo4
+  CorrectAnswer: Cl_demo4 = arrange(Cl_info_part,mortgage_bal,desc(data_dt))
+  AnswerTests: omnitest(correctExpr='Cl_demo4 = arrange(Cl_info_part,mortgage_bal,desc(data_dt))')
+  Hint: 輸入Cl_demo4 = arrange(Cl_info_part,mortgage_bal,desc(data_dt))
+
+- Class: text
+  Output: 到這裡可以休息一下，應該都學會了select, mutate, filter, and arrange
+  
+- Class: cmd_question
+  Output: 為了之後的處理，請先執行 Cl_info_part2 = mutate(Cl_info_part,time= as.POSIXct(data_dt))，我們要進行另外一個階段的課程
+  CorrectAnswer: Cl_info_part2 = mutate(Cl_info_part,time= as.POSIXct(data_dt))
+  AnswerTests: omnitest(correctExpr='Cl_info_part2 = mutate(Cl_info_part,time= as.POSIXct(data_dt))')
+
+
+- Class: cmd_question
+  Output: 換個比較複雜一點的資料集 GDP = read.table(file="./DSC2015/ETL/GDP.txt",sep=",",stringsAsFactors=F,header=T)
+  CorrectAnswer: GDP = read.table(file="./DSC2015/ETL/GDP.txt",sep=",",stringsAsFactors=F,header=T)
+  AnswerTests: omnitest(correctExpr='GDP = read.table(file="./DSC2015/ETL/GDP.txt",sep=",",stringsAsFactors=F,header=T)')
+
+
+- Class: cmd_question
+  Output: 看一下這個資料集View(GDP)
+  CorrectAnswer: View(GDP)
+  AnswerTests: omnitest(correctExpr='View(GDP)')
+
+
+- Class: text
+  Output: 輸入View(GDP)觀察GDP會發現怎麼前後有很多列的資料是不要的
+
+
+- Class: cmd_question
+  Output: 第一步:只留下5~135列的資料,並叫這個資料集為GDP_part
+  CorrectAnswer: GDP_part = GDP[5:135,]
+  AnswerTests: omnitest(correctExpr='GDP_part = GDP[5:135,]')
+  Hint: GDP_part = GDP[5:135,]
+
+- Class: cmd_question
+  Output: 第二步:改欄位名稱
+  CorrectAnswer: colnames(GDP_part) = c("time","GDP","GDP_yoy","GDP_2006","GDP_2006_yoy","GDP_minus","GDP_minus_yoy")
+  AnswerTests: omnitest(correctExpr='colnames(GDP_part) = c("time","GDP","GDP_yoy","GDP_2006","GDP_2006_yoy","GDP_minus","GDP_minus_yoy")')
+  Hint: colnames(GDP_part) = c("time","GDP","GDP_yoy","GDP_2006","GDP_2006_yoy","GDP_minus","GDP_minus_yoy")
+  
+- Class: cmd_question
+  Output: 第三步:去除Rownames
+  CorrectAnswer: rownames(GDP_part) = NULL
+  AnswerTests: omnitest(correctExpr='rownames(GDP_part) = NULL')
+  Hint: rownames(GDP_part) = NULL
+  
+- Class: cmd_question
+  Output: 第四步:把金錢欄位修正，叫這個資料集為GDP_part2
+  CorrectAnswer: GDP_part2= mutate(GDP_part,GDP = as.numeric(gsub(",", "",GDP))*1000000)
+  AnswerTests: omnitest(correctExpr='GDP_part2= mutate(GDP_part,GDP = as.numeric(gsub(",", "",GDP))*1000000)')
+  Hint: GDP_part2= mutate(GDP_part,GDP = as.numeric(gsub(",", "",GDP))*1000000)
+
+- Class: cmd_question
+  Output: 第五步:抽離年份與季，叫這個資料集為GDP_part3
+  CorrectAnswer: GDP_part3 = mutate(GDP_part2,year=as.numeric(substr(time,0,4)),season=as.numeric(substr(time,6,6)))
+  AnswerTests: omnitest(correctExpr='GDP_part3 = mutate(GDP_part2,year=as.numeric(substr(time,0,4)),season=as.numeric(substr(time,6,6)))')
+  Hint: GDP_part3 = mutate(GDP_part2,year=as.numeric(substr(time,0,4)),season=as.numeric(substr(time,6,6)))
+
+- Class: cmd_question
+  Output: 恭喜大家！已經將資料處理得很乾淨，可以用play()進入自由互動模式，打入View(GDP_part3)看處理的結果，在進入下一階段之前，請先再把資料保留剩下GDP,year,season這三個數字，叫這個資料集為GDP_part4
+  CorrectAnswer: GDP_part4 = select(GDP_part3,year,season,GDP)
+  AnswerTests: omnitest(correctExpr='GDP_part4 = select(GDP_part3,year,season,GDP)')
+  Hint: GDP_part4 = select(GDP_part3,year,season,GDP)
+
+
+- Class: text
+  Output: 接下來就是資料匯總
+  
+- Class: cmd_question
+  Output: 把房貸餘額先依月份加總起來,第一步 group by , Cl_info_part3 = group_by(Cl_info_part2,time)
+  CorrectAnswer: Cl_info_part3 = group_by(Cl_info_part2,time)
+  AnswerTests: omnitest(correctExpr='Cl_info_part3 = group_by(Cl_info_part2,time)')
+
+- Class: cmd_question
+  Output: 把房貸餘額先依月份加總起來,第二步 summarize , Cl_info_part4 = summarise(Cl_info_part3,mortage_total_bal = sum(mortgage_bal, na.rm = TRUE))
+  CorrectAnswer: Cl_info_part4 = summarise(Cl_info_part3,mortage_total_bal = sum(mortgage_bal, na.rm = TRUE))
+  AnswerTests: omnitest(correctExpr='Cl_info_part4 = summarise(Cl_info_part3,mortage_total_bal = sum(mortgage_bal, na.rm = TRUE))')
+
+- Class: cmd_question
+  Output: 同樣的我們也可以把GDP每年的值計算出來，請從GDP_part4開始製作，產製GDP_part5
+  CorrectAnswer: GDP_part5 = filter(summarise(group_by(GDP_part4,year),GDP=sum(GDP)),is.na(year)==F) 
+  AnswerTests: omnitest(correctExpr='GDP_part5 = filter(summarise(group_by(GDP_part4,year),GDP=sum(GDP)),is.na(year)==F) ')
+  Hint: GDP_part5 = filter(summarise(group_by(GDP_part4,year),GDP=sum(GDP)),is.na(year)==F) 
+
+- Class: text
+  Output: 接下來比較難喔! 我們要處理資料串接
+  
+
+- Class: cmd_question
+  Output: 首先我們要先把GDP_part5這張資料表製造出 每年份的1-1的時間欄位，好讓Cl_info_part5 可以串接，別忘了要有共通的欄位名稱time，就叫做GDP_part6
+  CorrectAnswer: GDP_part6 = select(mutate(GDP_part5,time = as.POSIXct(paste(year,"1","1",sep="-"))),time,GDP)
+  AnswerTests: omnitest(correctExpr='GDP_part6 = select(mutate(GDP_part5,time = as.POSIXct(paste(year,"1","1",sep="-"))),time,GDP)')
+  Hint: GDP_part6 = select(mutate(GDP_part5,time = as.POSIXct(paste(year,"1","1",sep="-"))),time,GDP)
+  
+- Class: cmd_question
+  Output: 以GDP_part6為主，Cl_info_part4為輔助資訊，主鍵為time，透過left_join串連出表格t1
+  CorrectAnswer: t1 = left_join(GDP_part6,Cl_info_part4,by="time")
+  AnswerTests: omnitest(correctExpr='t1 = left_join(GDP_part6,Cl_info_part4,by="time")')
+  Hint: t1 = left_join(GDP_part6,Cl_info_part4,by="time")
+
+- Class: text
+  Output: 可以在接下來的步驟中打入play()，再利用View(t1)，看看串接出來的表格樣貌
+  
+- Class: cmd_question
+  Output: 把t1一些沒資料的紀錄列去除，透過  t2 = filter(t1,is.na(mortage_total_bal)==FALSE)
+  CorrectAnswer:   t2 = filter(t1,is.na(mortage_total_bal)==FALSE)
+  AnswerTests: omnitest(correctExpr='t2 = filter(t1,is.na(mortage_total_bal)==FALSE)')
+  
+- Class: text
+  Output: 恭喜，最後的t2就是我們想要看見，而且可以用來做後續分析用的表格了！，不是很想看看這可以做什麼呢?
+  
+- Class: cmd_question
+  Output: 來畫圖吧! 第一步先多增加一個欄位  see1 = filter(mutate(t2,ratio =mortage_total_bal/GDP),is.na(ratio)==FALSE)
+  CorrectAnswer:   see1 = filter(mutate(t2,ratio =mortage_total_bal/GDP),is.na(ratio)==FALSE)
+  AnswerTests: omnitest(correctExpr='see1 = filter(mutate(t2,ratio =mortage_total_bal/GDP),is.na(ratio)==FALSE)')
+  
+- Class: cmd_question
+  Output: 第二步直接引入ggplot2 !  library(ggplot2)
+  CorrectAnswer:   library(ggplot2)
+  AnswerTests: omnitest(correctExpr='library(ggplot2)')
+
+
+- Class: cmd_question
+  Output: 第三步畫圖 !  ggplot(see1, aes(time, ratio))+geom_smooth(method="loess") +scale_size_area() +geom_point(aes(size = 20), alpha = 1/2) 
+  CorrectAnswer:   ggplot(see1, aes(time, ratio))+geom_smooth(method="loess") +scale_size_area() +geom_point(aes(size = 20), alpha = 1/2)
+  AnswerTests: omnitest(correctExpr='ggplot(see1, aes(time, ratio))+geom_smooth(method="loess") +scale_size_area() +geom_point(aes(size = 20), alpha = 1/2)')
+
+
+
+  
+- Class: text
+  Output: 恭喜你完成所有課程了!! 接下來請期待明日的R 火力全開系列
+  
+- Class: text
+  Output: 我是aha 謝謝參與這個課程，有任何問題歡迎用 ntuaha@gmail.com 與我聯絡
