@@ -8,7 +8,7 @@
 
 - 然後執行swirl與安裝課程
 
-    uninstall_all_courses();install_course_github("ntuaha","DSC_R_ETL_SWIRL_2015");swirl()
+    library(swirl);uninstall_all_courses();install_course_github("ntuaha","DSC_R_ETL_SWIRL_2015");swirl()
 
 - 可同時參考投影片網頁
 
