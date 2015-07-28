@@ -13,9 +13,9 @@
   Output: 先來把必要的Library導入
 
 - Class: cmd_question
-  Output: 第一步 執行 Cl_info = read.table(file="./DSC2015/ETL/cl_info_other.csv",sep=",",stringsAsFactors=F,header=T)
-  CorrectAnswer: Cl_info = read.table(file="./DSC2015/ETL/cl_info_other.csv",sep=",",stringsAsFactors=F,header=T)
-  AnswerTests: omnitest(correctExpr='Cl_info = read.table(file="./DSC2015/ETL/cl_info_other.csv",sep=",",stringsAsFactors=F,header=T)')
+  Output: 第一步 執行 Cl_info = read.table(file="./DSC_R_ETL_SWIRL_2015/ETL/cl_info_other.csv",sep=",",stringsAsFactors=F,header=T)
+  CorrectAnswer: Cl_info = read.table(file="./DSC_R_ETL_SWIRL_2015/ETL/cl_info_other.csv",sep=",",stringsAsFactors=F,header=T)
+  AnswerTests: omnitest(correctExpr='Cl_info = read.table(file="./DSC_R_ETL_SWIRL_2015/ETL/cl_info_other.csv",sep=",",stringsAsFactors=F,header=T)')
 
 - Class: cmd_question
   Output: 來看一下資料內容 - View
@@ -94,9 +94,9 @@
 
 
 - Class: cmd_question
-  Output: 換個比較複雜一點的資料集 GDP = read.table(file="./DSC2015/ETL/GDP.txt",sep=",",stringsAsFactors=F,header=T)
-  CorrectAnswer: GDP = read.table(file="./DSC2015/ETL/GDP.txt",sep=",",stringsAsFactors=F,header=T)
-  AnswerTests: omnitest(correctExpr='GDP = read.table(file="./DSC2015/ETL/GDP.txt",sep=",",stringsAsFactors=F,header=T)')
+  Output: 換個比較複雜一點的資料集 GDP = read.table(file="./DSC_R_ETL_SWIRL_2015/ETL/GDP.txt",sep=",",stringsAsFactors=F,header=T)
+  CorrectAnswer: GDP = read.table(file="./DSC_R_ETL_SWIRL_2015/ETL/GDP.txt",sep=",",stringsAsFactors=F,header=T)
+  AnswerTests: omnitest(correctExpr='GDP = read.table(file="./DSC_R_ETL_SWIRL_2015/ETL/GDP.txt",sep=",",stringsAsFactors=F,header=T)')
 
 
 - Class: cmd_question
