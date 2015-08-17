@@ -73,7 +73,7 @@
   Hint: 輸入Cl_demo2 = filter(Cl_info_part,mortgage_bal>1000000)
 
 - Class: cmd_question
-  Output: 透過dplyr裡的mutate，可以新增，更新需要的欄位．請幫忙在Cl_info_part做一個欄位MM,其值等於mortagage_bal除以1百萬,叫這個資料集Cl_demo3
+  Output: 透過dplyr裡的mutate，可以新增，更新需要的欄位．請幫忙在Cl_info_part做一個欄位MM,其值等於mortgage_bal除以1百萬,叫這個資料集Cl_demo3
   CorrectAnswer: Cl_demo3 = mutate(Cl_info_part,MM = mortgage_bal/1000000)
   AnswerTests: omnitest(correctExpr='Cl_demo3 = mutate(Cl_info_part,MM = mortgage_bal/1000000)')
   Hint: 輸入Cl_demo3 = mutate(Cl_info_part,MM = mortgage_bal/1000000)
