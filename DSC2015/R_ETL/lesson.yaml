@@ -67,7 +67,7 @@
   Hint: 輸入Cl_demo1 = select(Cl_info_part,data_dt,bank_nm,mortgage_bal)
 
 - Class: cmd_question
-  Output: 透過dplyr裡的filter，可以選出需要的紀錄．請幫忙從Cl_info_part挑選出mortgage＿bal大於1千萬的銀行資料,叫這個資料集Cl_demo2
+  Output: 透過dplyr裡的filter，可以選出需要的紀錄．請幫忙從Cl_info_part挑選出mortgage_bal大於1千萬的銀行資料,叫這個資料集Cl_demo2
   CorrectAnswer: Cl_demo2 = filter(Cl_info_part,mortgage_bal>1000000)
   AnswerTests: omnitest(correctExpr='Cl_demo2 = filter(Cl_info_part,mortgage_bal>1000000)')
   Hint: 輸入Cl_demo2 = filter(Cl_info_part,mortgage_bal>1000000)
