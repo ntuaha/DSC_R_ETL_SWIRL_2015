@@ -79,7 +79,7 @@
   Hint: 輸入Cl_demo3 = mutate(Cl_info_part,MM = mortgage_bal/1000000)
   
 - Class: cmd_question
-  Output: 透過dplyr裡的arrange，可以排序需要的欄位，請幫忙排序Cl_info_part出mortgage＿bal由小到大，但資料時間data_dt從大到小,叫這個資料集Cl_demo4
+  Output: 透過dplyr裡的arrange，可以排序需要的欄位，請幫忙排序Cl_info_part出mortgage_bal由小到大，但資料時間data_dt從大到小,叫這個資料集Cl_demo4
   CorrectAnswer: Cl_demo4 = arrange(Cl_info_part,mortgage_bal,desc(data_dt))
   AnswerTests: omnitest(correctExpr='Cl_demo4 = arrange(Cl_info_part,mortgage_bal,desc(data_dt))')
   Hint: 輸入Cl_demo4 = arrange(Cl_info_part,mortgage_bal,desc(data_dt))
