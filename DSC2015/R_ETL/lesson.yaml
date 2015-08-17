@@ -170,7 +170,7 @@
   
 
 - Class: cmd_question
-  Output: 首先我們要先把GDP_part5這張資料表製造出 每年份的1-1的時間欄位，好讓Cl_info_part5 可以串接，別忘了要有共通的欄位名稱time，就叫做GDP_part6
+  Output: 首先我們要先把GDP_part5這張資料表製造出 每年份的1月1日的時間欄位，好讓Cl_info_part5 可以串接，別忘了要有共通的欄位名稱time，就叫做GDP_part6
   CorrectAnswer: GDP_part6 = select(mutate(GDP_part5,time = as.POSIXct(paste(year,"1","1",sep="-"))),time,GDP)
   AnswerTests: omnitest(correctExpr='GDP_part6 = select(mutate(GDP_part5,time = as.POSIXct(paste(year,"1","1",sep="-"))),time,GDP)')
   Hint: GDP_part6 = select(mutate(GDP_part5,time = as.POSIXct(paste(year,"1","1",sep="-"))),time,GDP)
