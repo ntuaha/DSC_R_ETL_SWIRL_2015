@@ -67,19 +67,19 @@
   Hint: 輸入Cl_demo1 = select(Cl_info_part,data_dt,bank_nm,mortgage_bal)
 
 - Class: cmd_question
-  Output: 透過dplyr裡的filter，可以選出需要的紀錄．請幫忙從Cl_info_part挑選出mortgage＿bal大於1千萬的銀行資料,叫這個資料集Cl_demo2
+  Output: 透過dplyr裡的filter，可以選出需要的紀錄．請幫忙從Cl_info_part挑選出mortgage_bal大於1百萬的銀行資料,叫這個資料集Cl_demo2
   CorrectAnswer: Cl_demo2 = filter(Cl_info_part,mortgage_bal>1000000)
   AnswerTests: omnitest(correctExpr='Cl_demo2 = filter(Cl_info_part,mortgage_bal>1000000)')
   Hint: 輸入Cl_demo2 = filter(Cl_info_part,mortgage_bal>1000000)
 
 - Class: cmd_question
-  Output: 透過dplyr裡的mutate，可以新增，更新需要的欄位．請幫忙在Cl_info_part做一個欄位MM,其值等於mortagage_bal除以1千萬,叫這個資料集Cl_demo3
+  Output: 透過dplyr裡的mutate，可以新增，更新需要的欄位．請幫忙在Cl_info_part做一個欄位MM,其值等於mortgage_bal除以1百萬,叫這個資料集Cl_demo3
   CorrectAnswer: Cl_demo3 = mutate(Cl_info_part,MM = mortgage_bal/1000000)
   AnswerTests: omnitest(correctExpr='Cl_demo3 = mutate(Cl_info_part,MM = mortgage_bal/1000000)')
   Hint: 輸入Cl_demo3 = mutate(Cl_info_part,MM = mortgage_bal/1000000)
   
 - Class: cmd_question
-  Output: 透過dplyr裡的arrange，可以排序需要的欄位，請幫忙排序Cl_info_part出mortgage＿bal由小到大，但資料時間data_dt從大到小,叫這個資料集Cl_demo4
+  Output: 透過dplyr裡的arrange，可以排序需要的欄位，請幫忙排序Cl_info_part出mortgage_bal由小到大，但資料時間data_dt從大到小,叫這個資料集Cl_demo4
   CorrectAnswer: Cl_demo4 = arrange(Cl_info_part,mortgage_bal,desc(data_dt))
   AnswerTests: omnitest(correctExpr='Cl_demo4 = arrange(Cl_info_part,mortgage_bal,desc(data_dt))')
   Hint: 輸入Cl_demo4 = arrange(Cl_info_part,mortgage_bal,desc(data_dt))
@@ -170,7 +170,7 @@
   
 
 - Class: cmd_question
-  Output: 首先我們要先把GDP_part5這張資料表製造出 每年份的1-1的時間欄位，好讓Cl_info_part5 可以串接，別忘了要有共通的欄位名稱time，就叫做GDP_part6
+  Output: 首先我們要先把GDP_part5這張資料表製造出 每年份的1月1日的時間欄位，好讓Cl_info_part5 可以串接，別忘了要有共通的欄位名稱time，就叫做GDP_part6
   CorrectAnswer: GDP_part6 = select(mutate(GDP_part5,time = as.POSIXct(paste(year,"1","1",sep="-"))),time,GDP)
   AnswerTests: omnitest(correctExpr='GDP_part6 = select(mutate(GDP_part5,time = as.POSIXct(paste(year,"1","1",sep="-"))),time,GDP)')
   Hint: GDP_part6 = select(mutate(GDP_part5,time = as.POSIXct(paste(year,"1","1",sep="-"))),time,GDP)
