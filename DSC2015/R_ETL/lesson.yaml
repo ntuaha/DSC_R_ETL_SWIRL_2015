@@ -14,7 +14,7 @@
 
 - Class: cmd_question
   Output: 第一步 執行 Cl_info = read.table(file=file("./DSC2015/R_ETL/cl_info_other.csv", encoding = "UTF-8"),sep=",",stringsAsFactors=F,header=T)
-  CorrectAnswer: Cl_info = Cl_info = read.table(file=file("./DSC2015/R_ETL/cl_info_other.csv", encoding = "UTF-8"),sep=",",stringsAsFactors=F,header=T)
+  CorrectAnswer: Cl_info = read.table(file=file("./DSC2015/R_ETL/cl_info_other.csv", encoding = "UTF-8"),sep=",",stringsAsFactors=F,header=T)
   AnswerTests: omnitest(correctExpr='Cl_info = read.table(file=file("./DSC2015/R_ETL/cl_info_other.csv", encoding = "UTF-8"),sep=",",stringsAsFactors=F,header=T)')
 
 - Class: cmd_question
